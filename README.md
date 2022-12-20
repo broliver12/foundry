@@ -4,19 +4,12 @@ Solidity project template, leveraging [foundry](https://github.com/foundry-rs/fo
 
 ## Usage
 
-1. Clone this repo
-2. Execute `git submodule init; git submodule update --recursive`
+1. Clone this repository
 
-`forge install https://github.com/chiru-labs/ERC721A`
-
-`https://github.com/openzeppelin/openzeppelin-contracts`
-
-`https://github.com/foundry-rs/forge-std`
-
-3. Enjoy developing and testing smart contracts in Solidity
+2. Enjoy developing and testing smart contracts in Solidity
 
 **Note:** Execute `forge test` to run tests in `/solidity/test`
 
 ## License
 
-[MIT]()
+[MIT](https://github.com/broliver12/foundry/blob/master/LICENSE.txt)
