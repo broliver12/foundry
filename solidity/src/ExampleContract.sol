@@ -9,8 +9,8 @@ pragma solidity ^0.8.11;
 // import "openzeppelin-contracts/security/ReentrancyGuard.sol";
 // import "openzeppelin-contracts/utils/Strings.sol";
 
-contract Contract {
-    function exampleFunction() public {
-        // noop
+contract ExampleContract {
+    function exampleFunction() pure public returns(bool) {
+        return true;
     }
 }
