@@ -1,0 +1,6 @@
+# Foundry
+/build
+/solidity/lib
+
+# Node
+/node_modules
