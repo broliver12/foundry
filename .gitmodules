@@ -2,3 +2,7 @@
 	path = solidity/lib/ERC721A
 	url = https://github.com/chiru-labs/ERC721A
 	branch = v4.2.3
+[submodule "solidity/lib/openzeppelin-contracts"]
+	path = solidity/lib/openzeppelin-contracts
+	url = https://github.com/openzeppelin/openzeppelin-contracts
+	branch = v4.8.0
