@@ -1,6 +1,6 @@
 # Foundry
 /build
-# /solidity/lib
+/solidity/lib
 
 # Node
 /node_modules
