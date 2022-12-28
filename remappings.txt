@@ -1,4 +1,4 @@
 ds-test/=solidity/lib/forge-std/lib/ds-test/src/
-erc721a/=solidity/lib/erc721a/contracts/
+erc721a/=solidity/lib/ERC721A/contracts/
 forge-std/=solidity/lib/forge-std/src/
 openzeppelin-contracts/=solidity/lib/openzeppelin-contracts/contracts/

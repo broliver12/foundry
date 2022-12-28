@@ -1,6 +1,15 @@
-## Solidity Project Template
+## ERC721 Project Template
 
-Solidity project template, leveraging [foundry](https://github.com/foundry-rs/foundry)
+NFT project template. 
+
+Uses:
+
+- [foundry](https://github.com/foundry-rs/foundry)
+
+- [ERC721A](https://github.com/erc721a/)
+
+- [openzeppelin](https://github.com/OpenZeppelin/openzeppelin-contracts)
+
 
 ## Setup
 
@@ -12,10 +21,24 @@ Solidity project template, leveraging [foundry](https://github.com/foundry-rs/fo
 
 1. Clone this repository
 
-2. Enjoy developing and testing smart contracts in Solidity
+2. Extend `ERC721ACore`, or modify `ERC721Release` and implement your custom functionality.
 
-**Note:** Execute `forge test` to run tests in `/solidity/test`
+## Testing
+
+1. Update `/solidity/test/shared/BaseTest.t.sol` to test your custom implementation.
+
+2. Add new tests that extend `BaseTest` to leverage existing functionality.
+
+3. Execute `forge test` to run all tests in `/solidity/test`, or `forge test --match-path <testFilePath>` to run a specific file
+
+**Note:** Extending ERC721ACore will allow you to run your code againt basic functionality tests. Complete test coverage is the ONLY way to be confident in your smart contract's functionality.
+
+## Todo
+
+1. Add SOP tests
+2. Add deploy script
+3. Add Release Implementations (WL & no WL)
 
 ## License
 
-[MIT](https://github.com/broliver12/foundry/blob/master/LICENSE.txt)
+[MIT](https://github.com/broliver12/ERC721/blob/master/LICENSE.txt)
