@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: MIT
 
-/*************************************
-    Written by Oliver Straszynski:
-    https://github.com/broliver12/
-*************************************/
+// Written by Oliver Straszynski
+// https://github.com/broliver12/
 
 pragma solidity ^0.8.4;
 

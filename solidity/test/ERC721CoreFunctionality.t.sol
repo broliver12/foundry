@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.11;
+
+// Written by Oliver Straszynski
+// https://github.com/broliver12/
+
+pragma solidity ^0.8.11;
 
 import {BaseTest} from "./shared/BaseTest.t.sol";
 import "forge-std/Test.sol";
@@ -138,7 +142,7 @@ contract ERC721CoreFunctionalityTest is BaseTest {
         uint256 previousOwnerBalance = owner.balance;
 
         _assumeValidMintAmount(amount);
-        testContract.setMintState(1);
+        testContract.enablePublicMint(true);
         vm.stopPrank();
         vm.startPrank(user0, user0);
         testContract.publicMint{value: amount * price}(amount);
@@ -190,13 +194,13 @@ contract ERC721CoreFunctionalityTest is BaseTest {
     // Mint State
 
     function test_enableMint() public {
-        testContract.setMintState(1);
+        testContract.enablePublicMint(true);
         assert(testContract.publicMintEnabled() == true);
     }
 
     function test_disableMint() public {
-        testContract.setMintState(1);
-        testContract.setMintState(0);
+        testContract.enablePublicMint(true);
+        testContract.enablePublicMint(false);
         assert(testContract.publicMintEnabled() == false);
     }
 
@@ -213,7 +217,7 @@ contract ERC721CoreFunctionalityTest is BaseTest {
         vm.assume(userIndex > 0);
         vm.assume(userIndex < users.length);
 
-        testContract.setMintState(1);
+        testContract.enablePublicMint(true);
 
         vm.stopPrank();
         vm.startPrank(users[userIndex], users[userIndex]);
@@ -230,7 +234,7 @@ contract ERC721CoreFunctionalityTest is BaseTest {
         vm.assume(userIndex > 0);
         vm.assume(userIndex < users.length);
 
-        testContract.setMintState(1);
+        testContract.enablePublicMint(true);
 
         vm.stopPrank();
         vm.startPrank(users[userIndex], users[userIndex]);
@@ -240,7 +244,7 @@ contract ERC721CoreFunctionalityTest is BaseTest {
 
     function test_publicMint_maxMintsPlusOne_reverts() public {
         uint256 maxPlusOne = testContract.maxMints() + 1;
-        testContract.setMintState(1);
+        testContract.enablePublicMint(true);
         vm.expectRevert("Illegal quantity");
         testContract.publicMint{value: maxPlusOne * price}(maxPlusOne);
     }
@@ -252,7 +256,7 @@ contract ERC721CoreFunctionalityTest is BaseTest {
     {
         _assumeValidMintAmount(amount);
         vm.assume(toBurn < amount);
-        testContract.setMintState(1);
+        testContract.enablePublicMint(true);
 
         vm.stopPrank();
         vm.prank(user0, user0);
@@ -271,7 +275,7 @@ contract ERC721CoreFunctionalityTest is BaseTest {
     ) public {
         _assumeValidMintAmount(amount);
         vm.assume(toBurn < amount);
-        testContract.setMintState(1);
+        testContract.enablePublicMint(true);
 
         vm.stopPrank();
         vm.prank(user0, user0);
@@ -294,7 +298,7 @@ contract ERC721CoreFunctionalityTest is BaseTest {
         vm.assume(burnStart < amount);
         vm.assume(burnAmount <= amount - burnStart);
 
-        testContract.setMintState(1);
+        testContract.enablePublicMint(true);
 
         vm.stopPrank();
         vm.startPrank(user0, user0);
@@ -313,16 +317,16 @@ contract ERC721CoreFunctionalityTest is BaseTest {
        critical for keeping control of your contract.
     */
 
-    function test_onlyOwner_setMintState(uint256 amount, uint256 userIndex)
+    function test_onlyOwner_setMintState(bool state, uint256 userIndex)
         public
     {
         _assumeUserIsNotOwner(userIndex);
 
-        testContract.setMintState(amount);
+        testContract.enablePublicMint(state);
 
         _startPrankAndExpectOnlyOwnerRevert(userIndex);
 
-        testContract.setMintState(amount);
+        testContract.enablePublicMint(state);
     }
 
     function test_onlyOwner_setPrice(uint256 amount, uint256 userIndex) public {

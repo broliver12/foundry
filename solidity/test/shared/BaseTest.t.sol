@@ -1,39 +1,57 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.11;
+
+// Written by Oliver Straszynski
+// https://github.com/broliver12/
+
+pragma solidity ^0.8.11;
 
 import "solidity/src/ERC721ACore.sol";
 import {console} from "forge-std/console.sol";
 import {Test} from "forge-std/Test.sol";
-import {Utils} from "./Utils.t.sol";
 
 contract BaseTest is Test {
-   Utils internal utils;
+    address payable[] internal users;
+    address internal owner;
+    address internal user0;
+    address internal user1;
+    address internal user2;
+    address internal user3;
 
-   address payable[] internal users;
-   address internal owner;
-   address internal user0;
-   address internal user1;
-   address internal user2;
-   address internal user3;
+    // Change this to specific contract type for your ERC721ACore extension
+    ERC721ACore testContract;
 
-   // Change this to specific contract type for your ERC721ACore extension
-   ERC721ACore testContract;
+    function setUp() public virtual {
+        users = createUsers(5);
+        owner = users[0];
+        vm.label(owner, "Owner");
+        user0 = users[1];
+        user1 = users[2];
+        user2 = users[3];
+        user3 = users[4];
+    }
 
-   function setUp() public virtual {
-       utils = new Utils();
-       users = utils.createUsers(5);
-       owner = users[0];
-       vm.label(owner, "Owner");
-       user0 = users[1];
-       user1 = users[2];
-       user2 = users[3];
-       user3 = users[4];
-   }
+    // Change `testContract_` type specific contract type for your ERC721ACore extension
+    function init(ERC721ACore testContract_) internal {
+        testContract = testContract_;
+    }
 
-   // Change `testContract_` type specific contract type for your ERC721ACore extension
-   function init(ERC721ACore testContract_) internal {
-       testContract = testContract_;
-   }
+    // create users with 100 ETH balance each
+    function createUsers(uint256 userNum)
+        private
+        returns (address payable[] memory)
+    {
+        bytes32 seed = keccak256(abi.encodePacked("seed"));
+
+        address payable[] memory _users = new address payable[](userNum);
+        for (uint256 i = 0; i < userNum; i++) {
+            address payable user = payable(address(uint160(uint256(seed))));
+            seed = keccak256(abi.encodePacked(user));
+            vm.deal(user, 100 ether);
+            _users[i] = user;
+        }
+
+        return _users;
+    }
 
     function _assumeValidMintAmount(uint256 amount) internal view {
         vm.assume(amount > 0);

@@ -1,6 +1,8 @@
 ## ERC721 Project Template
 
-NFT project template. 
+NFT project template.
+
+Contains various template implementations of `ERC721A`, along with a complete suite of unit tests.
 
 Uses:
 
@@ -21,7 +23,7 @@ Uses:
 
 1. Clone this repository
 
-2. Extend `ERC721ACore`, or modify `ERC721Release` and implement your custom functionality.
+2. Extend `ERC721ACore`, or modify `ERC721ARelease` or `ERC721AWhitelistRelease` and implement your custom functionality.
 
 ## Testing
 
@@ -35,9 +37,8 @@ Uses:
 
 ## Todo
 
-1. Add SOP tests
-2. Add deploy script
-3. Add Release Implementations (WL & no WL)
+1. Add deploy script
+2. Add documentation for tests & deployer
 
 ## License
 

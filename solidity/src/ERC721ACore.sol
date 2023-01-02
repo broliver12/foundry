@@ -1,9 +1,7 @@
 // SPDX-License-Identifier: MIT
 
-/****************************************************************************
-    Written by Oliver Straszynski
-    https://github.com/broliver12/
-****************************************************************************/
+// Written by Oliver Straszynski
+// https://github.com/broliver12/
 
 pragma solidity ^0.8.4;
 
@@ -20,16 +18,14 @@ contract ERC721ACore is ERC721AIndex, Ownable, ReentrancyGuard {
     string private baseExtension = '.json';
     bool public publicMintEnabled;
     uint256 public immutable totalDevSupply;
+    uint256 private remainingDevSupply;
     uint256 public totalCollectionSize;
 
-    // Mint Limits
+    // Mint Limit
     uint256 public maxMints;
 
     // Price
     uint256 public unitPrice;
-
-    // TOTAL supply for devs, marketing, friends, family
-    uint256 private remainingDevSupply;
 
     constructor(
       string memory name_,
@@ -122,12 +118,8 @@ contract ERC721ACore is ERC721AIndex, Ownable, ReentrancyGuard {
     }
 
     // Set the mint state
-    function setMintState(uint256 _state) external virtual onlyOwner {
-        if (_state == 1) {
-          publicMintEnabled = true;
-        } else {
-          publicMintEnabled = false;
-        }
+    function enablePublicMint(bool _enabled) external virtual onlyOwner {
+        publicMintEnabled = _enabled;
     }
 
     // Set revealed to true (displays baseURI instead of notRevealedURI on opensea)

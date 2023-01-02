@@ -1,5 +1,9 @@
 // SPDX-License-Identifier: MIT
-pragma solidity >=0.8.11;
+
+// Written by Oliver Straszynski
+// https://github.com/broliver12/
+
+pragma solidity ^0.8.11;
 
 import {BaseTest} from "./shared/BaseTest.t.sol";
 import "forge-std/Test.sol";
@@ -13,7 +17,7 @@ contract ERC721IndexingFunctionalityTest is BaseTest {
         super.init(
             new ERC721ACore("TestContract", "TEST", 3333, 20, 55, price)
         );
-        testContract.setMintState(1);
+        testContract.enablePublicMint(true);
         // Assume we're a given user (non owner)
         vm.startPrank(user0, user0);
     }
