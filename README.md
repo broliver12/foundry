@@ -2,9 +2,9 @@
 
 NFT project template.
 
-Contains various template implementations of `ERC721A`, along with a complete suite of unit tests.
+Contains various template implementations of `ERC721A`, alongside a complete suite of unit tests.
 
-Uses:
+Depends on:
 
 - [foundry](https://github.com/foundry-rs/foundry)
 
@@ -42,4 +42,4 @@ Uses:
 
 ## License
 
-[MIT](https://github.com/broliver12/ERC721/blob/master/LICENSE.txt)
+[MIT](https://github.com/broliver12/foundry_erc721/blob/master/LICENSE.txt)
